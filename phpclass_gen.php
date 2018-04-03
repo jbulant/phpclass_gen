@@ -18,7 +18,7 @@
       print( $invalidcharmsg );
       return;
     }
-    if ( file_exists( $name . '(' . $i . ').class.php' ) !== FALSE ) {
+    if ( file_exists( $name . 'class.php' ) !== FALSE ) {
     print ( $invalidname );
     return;
     }
