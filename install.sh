@@ -4,38 +4,13 @@ then
 	echo "Please specify a path or -remove"
 	exit
 fi
-if [[ ( ! -d "$1" ) && $1 != "-remove" ]]
+if [[ ( ! -d "$1" ) && $1 != "-remove" && $1 != "-update" ]]
 then
 	echo "Directory doesn't exist";
 	exit
 fi
-if [[ $1 != "-remove" ]]
+if [[ $1 == "-remove" ]]
 then
-	grep "phpcg" ~/.bashrc 2>/dev/null >/dev/null
-	ret=$?;
-	if [[ ( -f ~/.bashrc ) && ( $ret == 1 ) ]]
-	then
-		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.bashrc
-		cp phpclass_gen.php $1 2>/dev/null >/dev/null
-		cp ClassName.class.php $1 2>/dev/null >/dev/null
-		source ~/.bashrc 2>/dev/null >/dev/null
-		echo "Install Complete"
-	fi
-	grep "phpcg" ~/.zshrc 2>/dev/null >/dev/null
-	ret=$?;
-	if [[ ( -f ~/.zshrc ) && ( $ret == 1 ) ]]
-	then
-		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.zshrc
-		cp phpclass_gen.php $1 2>/dev/null >/dev/null
-		cp ClassName.class.php $1 2>/dev/null >/dev/null
-		source ~/.zshrc 2>/dev/null >/dev/null
-		echo "Install Complete"
-	fi
-	if [[ $ret == 0 ]]
-	then
-		echo "Phpcg Already install"
-	fi
-else
 	grep "phpcg" ~/.bashrc 2>/dev/null >/dev/null
 	find1=$?;
 	grep "phpcg" ~/.zshrc 2>/dev/null >/dev/null
@@ -68,5 +43,34 @@ else
 		rm -rf $path/ClassName.class.php 2>/dev/null >/dev/null
 	else
 		echo "Phpcg is not installed"
+	fi
+elif [[ $1 == "-update" ]]
+then
+	echo "updating ..."
+	git pull
+else
+	grep "phpcg" ~/.bashrc 2>/dev/null >/dev/null
+	ret=$?;
+	if [[ ( -f ~/.bashrc ) && ( $ret == 1 ) ]]
+	then
+		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.bashrc
+		cp phpclass_gen.php $1 2>/dev/null >/dev/null
+		cp ClassName.class.php $1 2>/dev/null >/dev/null
+		source ~/.bashrc 2>/dev/null >/dev/null
+		echo "Install Complete"
+	fi
+	grep "phpcg" ~/.zshrc 2>/dev/null >/dev/null
+	ret=$?;
+	if [[ ( -f ~/.zshrc ) && ( $ret == 1 ) ]]
+	then
+		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.zshrc
+		cp phpclass_gen.php $1 2>/dev/null >/dev/null
+		cp ClassName.class.php $1 2>/dev/null >/dev/null
+		source ~/.zshrc 2>/dev/null >/dev/null
+		echo "Install Complete"
+	fi
+	if [[ $ret == 0 ]]
+	then
+		echo "Phpcg Already install"
 	fi
 fi
