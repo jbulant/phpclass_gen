@@ -27,7 +27,7 @@ then
 	then
 		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.zshrc
 		cp phpclass_gen.php $1 2>/dev/null >/dev/null
-		cp ClassName.php $1 2>/dev/null >/dev/null
+		cp ClassName.class.php $1 2>/dev/null >/dev/null
 		source ~/.zshrc 2>/dev/null >/dev/null
 		echo "Install Complete"
 	fi
