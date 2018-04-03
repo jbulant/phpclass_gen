@@ -54,7 +54,7 @@ else
 	ret=$?;
 	if [[ ( -f ~/.bashrc ) && ( $ret == 1 ) ]]
 	then
-		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.bashrc
+		echo "alias phpcg='php -f $1/phpclass_gen.php'" >> ~/.bashrc
 		cp phpclass_gen.php $1 2>/dev/null >/dev/null
 		cp ClassName.class.php $1 2>/dev/null >/dev/null
 		source ~/.bashrc 2>/dev/null >/dev/null
@@ -64,9 +64,10 @@ else
 	ret=$?;
 	if [[ ( -f ~/.zshrc ) && ( $ret == 1 ) ]]
 	then
-		echo "alias phpcg='$1/php -f phpclass_gen.php'" >> ~/.zshrc
-		cp phpclass_gen.php $1 2>/dev/null >/dev/null
-		cp ClassName.class.php $1 2>/dev/null >/dev/null
+		echo "alias phpcg='php -f $1/phpclass_gen.php'" >> ~/.zshrc
+		pwd
+		cp `dirname $0`/phpclass_gen.php $1 2>/dev/null >/dev/null
+		cp `dirname $0`/ClassName.class.php $12>/dev/null >/dev/null
 		source ~/.zshrc 2>/dev/null >/dev/null
 		echo "Install Complete"
 	fi
