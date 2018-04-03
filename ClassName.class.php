@@ -5,23 +5,6 @@ class ClassName {
   private     $_verbose = false;
   private     $_isactive = false;
 
-  private function _parseParam( $key, $value ) {
-
-    switch ( $key) {
-      case 'verb' :
-        $this->setVerbose( $value );
-        break;
-      case 'active' :
-        $this->setActive( $value );
-        break;
-      default :
-        print( "Warning[ClassName]: '" . $key . "' unkown parameter." . PHP_EOL );
-        return ( -1 );
-        break;
-    }
-    return ( 0 );
-  }
-
   public function  __construct( array $args ) {
 
     if (isset( $args )) {
@@ -100,6 +83,23 @@ class ClassName {
 
   public static function  default() {
       return new ClassName(array());
+  }
+
+  private function _parseParam( $key, $value ) {
+
+    switch ( $key) {
+      case 'verb' :
+        $this->setVerbose( $value );
+        break;
+      case 'active' :
+        $this->setActive( $value );
+        break;
+      default :
+        print( "Warning[ClassName]: '" . $key . "' unkown parameter." . PHP_EOL );
+        return ( -1 );
+        break;
+    }
+    return ( 0 );
   }
 
 }
