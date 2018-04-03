@@ -47,6 +47,7 @@ then
 elif [[ $1 == "-update" ]]
 then
 	echo "updating ..."
+	cd `dirname "$0" | rev | cut -d"." -f2- | rev`
 	git pull
 else
 	grep "phpcg" ~/.bashrc 2>/dev/null >/dev/null
